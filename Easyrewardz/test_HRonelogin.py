@@ -58,9 +58,10 @@ class Testlogin:
         driver.find_element(By.XPATH, "//input[@id = 'hrone-password']").send_keys("Test@123")
         time.sleep(5)
         driver.find_element(By.XPATH, "//span[normalize-space()='LOG IN']").click()
-        WebDriverWait(driver, 3).until(expected_conditions.text_to_be_present_in_element((By.XPATH, "//div[@class='mat-mdc-snack-bar-label mdc-snackbar__label']")))
+        WebDriverWait(driver, 3).until(expected_conditions.text_to_be_present_in_element((By.XPATH, "//div[@class='mat-mdc-snack-bar-label mdc-snackbar__label']"),"Invalid user credentials"))
         if 'Invalid user credentials' in driver.find_element(By.XPATH, "//div[@class='mat-mdc-snack-bar-label mdc-snackbar__label']").text:
             assert True
         else:
             assert False
+        driver.find_element(By.XPATH, "//span[@class = 'mdc-button__label']").click()
         driver.quit()
